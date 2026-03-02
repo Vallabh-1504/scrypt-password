@@ -1,0 +1,20 @@
+# source & config
+src/
+tsconfig.json
+
+# Dev notes
+notes.md
+
+
+# Environment & OS
+.env
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Git
+.gitignore
+.git/
