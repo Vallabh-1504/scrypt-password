@@ -22,6 +22,7 @@ Most packages point developers toward `bcrypt` or `bcryptjs`. Both have real, pr
 
 - **It's slow by design.** Without native bindings, the bcrypt key derivation is done in JS — making it significantly slower than the native version.
 - **The bcrypt algorithm itself is aging.** It's based on the Blowfish cipher designed in 1999. Its memory requirements are fixed (very low by modern standards), meaning it's **not memory-hard** — modern GPUs and ASICs can brute-force it in parallel relatively efficiently.
+- **Blocks the event loop.** Because `bcryptjs` is pure JavaScript, the key derivation runs entirely on the main thread. For the duration of the hash, Node's event loop is frozen — no incoming requests are handled, no I/O events. At the default cost factor (10), `bcryptjs` takes **~250–400ms** per hash on a typical server. At the production-recommended cost factor (12), that climbs to **~1–2 seconds** — meaning every login or registration request stalls the entire process for up to two seconds.
 
 ### Why `scrypt`?
 
@@ -105,6 +106,23 @@ if (!isValid) {
   throw new Error('Invalid credentials');
 }
 ```
+
+---
+
+## Security Notes
+
+- **Random salt per password.** `crypto.randomBytes(16)` generates a fresh salt for every hash — two identical passwords will always produce different hashes.
+- **Timing-safe comparison.** Standard `===` comparison short-circuits on the first mismatched character, leaking information about partial hash matches. `timingSafeEqual` always iterates the full hash, eliminating this timing difference.
+- **No dependencies.** The entire library is a thin wrapper over Node.js built-ins. There is nothing to audit, and dependency problem.
+
+---
+
+## Further Improvements
+
+These are planned or considered for future versions:
+
+- [ ] **Hash upgrade path** — detect when a stored hash was generated with weaker parameters and transparently re-hash on the next successful login, without forcing users to change their password.
+- [ ] **Proper test suite** — replace the manual `test.ts` smoke test with a Jest or Vitest with proper assertions and edge-case coverage (empty passwords, very long passwords, malformed stored hashes, etc.).
 
 ---
 
