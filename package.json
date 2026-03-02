@@ -1,0 +1,46 @@
+{
+  "name": "scrypt-password",
+  "version": "1.0.0",
+  "description": "A zero-dependency, TypeScript-first password hashing and comparison library using Node.js native crypto (scrypt + timingSafeEqual)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "ts-node src/test.ts"
+  },
+  "keywords": [
+    "password",
+    "hash",
+    "scrypt",
+    "crypto",
+    "authentication",
+    "security",
+    "typescript",
+    "bcrypt",
+    "bcryptjs",
+    "bcrypt",
+    "node",
+    "express"
+  ],
+  "author": "vallabh",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Vallabh-1504/password_authenticator"
+  },
+  "bugs": {
+    "url": "https://github.com/Vallabh-1504/password_authenticator/issues"
+  },
+  "homepage": "https://github.com/Vallabh-1504/password_authenticator#readme",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
