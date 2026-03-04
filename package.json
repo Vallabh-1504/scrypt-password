@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "test": "ts-node src/test.ts"
+    "test": "ts-node tests/test.ts"
   },
   "keywords": [
     "password",

@@ -1,4 +1,4 @@
-import { Password } from "./password";
+import { Password } from "../src/password";
 
 async function test(){
     console.log('--- Starting Auth Test ---');

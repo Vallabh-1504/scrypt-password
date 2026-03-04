@@ -1,6 +1,7 @@
 # source & config
 src/
 tsconfig.json
+tests/
 
 # Dev notes
 notes.md
