@@ -1,4 +1,4 @@
-# password-authenticator
+# native-scrypt
 
 A **zero-dependency**, TypeScript-first password hashing and verification library built entirely on Node.js's built-in `crypto` module. Uses `scrypt` for hashing and `timingSafeEqual` for comparison — no native bindings, no build tools, no surprises.
 
@@ -36,7 +36,7 @@ Most packages point developers toward `bcrypt` or `bcryptjs`. Both have real, pr
 ## Installation
 
 ```bash
-npm install scrypt-password
+npm install native-scrypt
 ```
 
 Requires **Node.js >= 16**.
@@ -52,7 +52,7 @@ Hashes a plain-text password using `scrypt` with a randomly generated 16-byte sa
 Returns a single string in the format `<hex_hash>.<hex_salt>` — safe to store directly in a database column.
 
 ```ts
-import { Password } from 'password-authenticator';
+import { Password } from 'native-scrypt';
 
 const hash = await Password.toHash('my_secret_password');
 // e.g. "a3fb...c2d1.e4da...f18b"
@@ -92,7 +92,7 @@ const isInvalid = await Password.compare(storedHash, 'wrong_password');
 ## Usage Example
 
 ```ts
-import { Password } from 'password-authenticator';
+import { Password } from 'native-scrypt';
 
 // Registration
 const passwordHash = await Password.toHash(req.body.password);

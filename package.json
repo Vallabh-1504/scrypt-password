@@ -1,5 +1,5 @@
 {
-  "name": "scrypt-password",
+  "name": "native-scrypt",
   "version": "1.0.0",
   "description": "A zero-dependency, TypeScript-first password hashing and comparison library using Node.js native crypto (scrypt + timingSafeEqual)",
   "main": "dist/index.js",
